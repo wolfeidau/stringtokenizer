@@ -14,6 +14,34 @@ The main features of this library are:
 
 # Usage
 
+Below is an example of lexical analysis of key value data:
+
+```go
+func ExampleStringTokenizer_NextToken_include_delimiters() {
+
+	input := "name=markw,age=23,cyclist=true"
+	tokenizer := NewStringTokenizer(strings.NewReader(input), "=,", true /*includeDelimiters */)
+
+	for tokenizer.HasMoreTokens() {
+		token := tokenizer.NextToken()
+		fmt.Println(token)
+	}
+
+	// Output:
+	// name
+	// =
+	// markw
+	// ,
+	// age
+	// =
+	// 23
+	// ,
+	// cyclist
+	// =
+	// true
+}
+```
+
 Below is an example using `⌘` or `鸡` as a delimiter to illustrate handling multi-byte delimiters:
 
 ```golang

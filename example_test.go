@@ -20,3 +20,27 @@ func ExampleStringTokenizer_NextToken() {
 	// b
 	// c
 }
+
+func ExampleStringTokenizer_NextToken_include_delimiters() {
+
+	input := "name=markw,age=23,cyclist=true"
+	tokenizer := NewStringTokenizer(strings.NewReader(input), "=,", true /*includeDelimiters */)
+
+	for tokenizer.HasMoreTokens() {
+		token := tokenizer.NextToken()
+		fmt.Println(token)
+	}
+
+	// Output:
+	// name
+	// =
+	// markw
+	// ,
+	// age
+	// =
+	// 23
+	// ,
+	// cyclist
+	// =
+	// true
+}
