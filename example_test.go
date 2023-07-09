@@ -7,8 +7,8 @@ import (
 
 func ExampleStringTokenizer_NextToken() {
 
-	input := "a,b,c"
-	tokenizer := NewStringTokenizer(strings.NewReader(input), ",", false /*includeDelimiters */)
+	input := "a⌘b鸡c"
+	tokenizer := NewStringTokenizer(strings.NewReader(input), "⌘鸡", false /*includeDelimiters */)
 
 	for tokenizer.HasMoreTokens() {
 		token := tokenizer.NextToken()

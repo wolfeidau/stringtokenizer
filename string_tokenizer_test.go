@@ -35,14 +35,14 @@ func TestNextToken(t *testing.T) {
 }
 
 func TestNextToken_include_tokens(t *testing.T) {
-	input := "a,b,c"
-	tokenizer := NewStringTokenizer(strings.NewReader(input), ",", true)
+	input := "a,b c"
+	tokenizer := NewStringTokenizer(strings.NewReader(input), ", ", true)
 
 	expectedTokens := []string{
 		"a",
 		",",
 		"b",
-		",",
+		" ",
 		"c",
 	}
 
@@ -56,7 +56,7 @@ func TestNextToken_include_tokens(t *testing.T) {
 		}
 
 		if token != expectedTokens[i] {
-			t.Errorf("Expected token %s but got %s", expectedTokens[i], token)
+			t.Errorf("Expected token `%s` but got `%s`", expectedTokens[i], token)
 		}
 	}
 
